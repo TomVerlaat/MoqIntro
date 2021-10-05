@@ -30,6 +30,22 @@ namespace TestProjSMTP
             Assert.IsTrue(processed);
         }
 
+        [Test]
+        public void Calling_SendMail_And_Sending_Mailmessage_should_return_False()
+        {
+            //arrange
+            //The mock object is "dumb" - we have to tell it which method we want to call and what it SHOULD return
+            _SMTPMock.Setup(x => x.SendMail(It.IsAny<string>())).Returns(false);
+
+            //act
+            OrderProcessorAfter Orderprocessor = new OrderProcessorAfter(_SMTPMock.Object);
+            bool processed = Orderprocessor.Finalize();
+
+
+            //Assert
+            Assert.IsFalse(processed);
+        }
+
         [TearDown]
         public void TearDown()
         {

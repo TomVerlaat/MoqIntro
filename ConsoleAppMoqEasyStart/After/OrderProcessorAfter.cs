@@ -16,9 +16,9 @@ namespace ConsoleAppMoqEasyStart.After
 
         public bool Finalize()
         {
-            _smtpSender.SendMail("message");
+           var result = _smtpSender.SendMail("message");
 
-            return true;
+            return result;
         }
     }
 }
